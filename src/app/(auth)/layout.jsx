@@ -1,6 +1,7 @@
-import Navbar from "../component/Navbar/Navbar";
+import React from 'react';
+import Navbar from '../component/Navbar/Navbar';
 
-const mainLayout = ({ children }) => {
+const authLayout = ({children}) => {
     return (
         <div>
             <main>
@@ -11,4 +12,4 @@ const mainLayout = ({ children }) => {
     );
 };
 
-export default mainLayout;
+export default authLayout;

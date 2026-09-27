@@ -2,7 +2,13 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import ReusableNav from "./ReusableNav";
-const Navbar = () => {
+import LogoutBtn from "./LogoutBtn";
+import { session } from "@/app/lib/session";
+const Navbar = async () => {
+    // get session
+    const userSession = await session()
+    console.log(userSession);
+
     return (
         <div>
             <nav className="sticky top-0 z-40 w-10/12 mx-auto border-b border-separator">
@@ -15,11 +21,16 @@ const Navbar = () => {
                         <li><ReusableNav href="/about">All Animals</ReusableNav></li>
                     </ul>
                     {/* Right */}
-                    <div className='flex gap-2 my-1'>
-                        <Image src='/assets/user.png' alt='profile-logo' width={40} height={40}></Image>
-                        <Link href="/signin"><Button className="rounded-sm bg-slate-700 text-white px-6" variant='primary'>Login</Button></Link>
-                    </div>
-
+                    {userSession ?
+                        <div className="flex gap-3">
+                            <Link href="/profile"><Image src='/assets/user.png' alt='profile-logo' width={40} height={40}></Image></Link>
+                            <LogoutBtn></LogoutBtn>
+                        </div>
+                        : <div className='flex gap-2 my-1'>
+                            <Link href="/signin" className="rounded-full bg-green-900 text-white py-2 px-4">Login</Link>
+                            <Link href="/signup" className="rounded-full bg-green-900 text-white py-2 px-4">Register</Link>
+                        </div>
+                    }
 
                 </header>
             </nav>

@@ -12,13 +12,32 @@ import {
     Label,
     TextField,
 } from "@heroui/react";
+import { authClient } from "@/app/lib/auth-client";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
-const signInPage = () => {
-    const onSubmit = (e) => {
+const SignInPage = () => {
+    const router = useRouter()
+    const onSubmit = async (e) => {
         e.preventDefault();
+        const form = e.currentTarget
         const formData = new FormData(e.currentTarget);
         const userData = Object.fromEntries(formData.entries())
-        console.log(userData);
+
+        // sign up a new user using better auth
+        const { data, error } = await authClient.signUp.email({
+            name: userData.name, // required, The name of the user.
+            email: userData.email, // required, The email address of the user.
+            password: userData.password, // required, The password of the user. It should be at least 8 characters long and max 128 by default.
+        });
+        // Registration
+        if (data) {
+            toast.success("Registration successful!");
+            form.reset()
+            router.push("/")
+        } else {
+            toast.error("Registration failed!");
+        }
     }
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-50">
@@ -30,7 +49,7 @@ const signInPage = () => {
 
                 <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
 
-                    <TextField>
+                    <TextField name="name">
                         <Label>Name</Label>
                         <Input placeholder="Enter your name" />
                         <FieldError />
@@ -99,4 +118,4 @@ const signInPage = () => {
     );
 };
 
-export default signInPage;
+export default SignInPage;

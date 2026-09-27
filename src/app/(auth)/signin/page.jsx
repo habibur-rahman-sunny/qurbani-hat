@@ -12,13 +12,28 @@ import {
     Label,
     TextField,
 } from "@heroui/react";
+import { authClient } from "@/app/lib/auth-client";
+import { toast } from "react-toastify";
 
-const signInPage = () => {
-    const onSubmit = (e) => {
+const SignInPage = () => {
+    const onSubmit = async (e) => {
         e.preventDefault();
+        const form = e.currentTarget;
         const formData = new FormData(e.currentTarget);
         const userData = Object.fromEntries(formData.entries())
-        console.log(userData);
+        const { data, error } = await authClient.signIn.email({
+            email: userData.email, // required, The email address of the user.
+            password: userData.password, // required, The password of the user. It should be at least 8 characters long and max 128 by default.
+            rememberMe: userData.rememberMe, // If false, the user will be signed out when the browser is closed. (optional) (default: true)
+            callbackURL: "/", // An optional URL to redirect to after the user signs in. (optional)
+        });
+        // Registration
+        if (data) {
+            toast.success("Login successful!");
+            form.reset()
+        } else {
+            alert(error.message)
+        }
     }
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-50">
@@ -93,4 +108,4 @@ const signInPage = () => {
     );
 };
 
-export default signInPage;
+export default SignInPage;

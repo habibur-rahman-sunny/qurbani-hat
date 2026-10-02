@@ -7,7 +7,7 @@ import { session } from "@/app/lib/session";
 const Navbar = async () => {
     // get session
     const userSession = await session()
-    console.log(userSession);
+    const user = userSession?.user
 
     return (
         <div>
@@ -18,23 +18,33 @@ const Navbar = async () => {
                     {/* Center */}
                     <ul className="absolute left-1/2 flex -translate-x-1/2 items-center gap-4">
                         <li><ReusableNav href="/">Home</ReusableNav></li>
-                        <li><ReusableNav href="/about">All Animals</ReusableNav></li>
+                        <li><ReusableNav href="/allanimals">All Animals</ReusableNav></li>
                     </ul>
                     {/* Right */}
-                    {userSession ?
-                        <div className="flex gap-3">
-                            <Link href="/profile"><Image src='/assets/user.png' alt='profile-logo' width={40} height={40}></Image></Link>
-                            <LogoutBtn></LogoutBtn>
-                        </div>
-                        : <div className='flex gap-2 my-1'>
-                            <Link href="/signin" className="rounded-full bg-green-900 text-white py-2 px-4">Login</Link>
-                            <Link href="/signup" className="rounded-full bg-green-900 text-white py-2 px-4">Register</Link>
-                        </div>
-                    }
+                    <div>
+                        {userSession ?
+                            <div className="flex gap-3">
+                                <Link href="/profile">
+                                        <Image
+                                            src={user?.image || "/assets/user.png"}
+                                            alt="Profile"
+                                            width={40}
+                                            height={40}
+                                            className="mx-auto rounded-full"
+                                        />
+                                    </Link>
+                                <LogoutBtn></LogoutBtn>
+                            </div>
+                            : <div className='flex gap-2 my-1'>
+                                <Link href="/signin" className="rounded-full bg-green-900 text-white py-2 px-4">Login</Link>
+                                <Link href="/signup" className="rounded-full bg-green-900 text-white py-2 px-4">Register</Link>
+                            </div>
+                        }
+                    </div>
 
                 </header>
             </nav>
-        </div>
+        </div >
     );
 };
 

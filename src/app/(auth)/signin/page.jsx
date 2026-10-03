@@ -3,17 +3,10 @@
 import Link from "next/link";
 import { Check } from "@gravity-ui/icons";
 
-import {
-    Button,
-    Description,
-    FieldError,
-    Form,
-    Input,
-    Label,
-    TextField,
-} from "@heroui/react";
+import { Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 import { authClient } from "@/app/lib/auth-client";
 import { toast } from "react-toastify";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const SignInPage = () => {
     const onSubmit = async (e) => {
@@ -34,6 +27,13 @@ const SignInPage = () => {
         } else {
             alert(error.message)
         }
+    }
+
+    //For social login
+    const signInWithGoogle = async()=>{
+        const dataForSocialLogin = await authClient.signIn.social({
+            provider: "google",
+        });
     }
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-50">
@@ -92,6 +92,35 @@ const SignInPage = () => {
                         <Button className="bg-green-800" type="submit"><Check />Submit</Button>
                     </div>
 
+                    <div className="flex items-center gap-3">
+                        <div className="h-px flex-1 bg-slate-300"></div>
+                        <span className="text-sm text-slate-500">Or</span>
+                        <div className="h-px flex-1 bg-slate-300"></div>
+                    </div>
+
+                    <div className="flex gap-2">
+                        {/* Google Login */}
+                        <Button
+                            type="button"
+                            variant="secondary"
+                            onClick={signInWithGoogle}
+                            className="w-1/2"
+                        >
+                            <FaGoogle />
+                            Google
+                        </Button>
+
+                        {/* GitHub Login */}
+                        <Button
+                            type="button"
+                            variant="secondary"
+                            // onPress={signInWithGithub}
+                            className="w-1/2"
+                        >
+                            <FaGithub />
+                            GitHub
+                        </Button>
+                    </div>
                     <div className="text-center text-sm">
                         Do not have an account?{" "}
                         <Link
@@ -101,7 +130,6 @@ const SignInPage = () => {
                             Register
                         </Link>
                     </div>
-
                 </Form>
             </div>
         </div>

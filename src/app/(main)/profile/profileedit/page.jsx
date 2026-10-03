@@ -34,8 +34,8 @@ const ProfileEditPage = () => {
 
 
     return (
-        <div className="min-h-screen flex justify-center items-center px-4">
-            <div className="w-full max-w-md border rounded-xl p-6 shadow-sm">
+        <div className="min-h-screen flex justify-center items-center px-4 bg-gray-50">
+            <div className="w-full max-w-md border border-slate-500 rounded-xl p-6 shadow-2xl">
                 {/* Profile Image */}
                 {
                     !userData ?
@@ -69,7 +69,7 @@ const ProfileEditPage = () => {
                 }
 
                 {/* Name */}
-                <div className="border rounded-lg p-4 mb-4">
+                <div className="rounded-lg p-4 mb-4">
                     <div className="flex items-center justify-between gap-4">
 
                         <div className="flex-1">
@@ -81,7 +81,7 @@ const ProfileEditPage = () => {
                                 type="text"
                                 value={name || ""}
                                 onChange={(e) => setName(e.target.value)}
-                                className="w-full border rounded-md px-3 py-2"
+                                className="w-full rounded-md px-3 py-2 bg-slate-50 border border-slate-500"
                                 placeholder="Enter your name"
                             />
                         </div>

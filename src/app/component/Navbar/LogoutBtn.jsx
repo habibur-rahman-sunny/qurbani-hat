@@ -9,14 +9,11 @@ const LogoutBtn = () => {
     const router = useRouter();
     const pathname = usePathname();
 
-    if (pathname === "/profile/profileedit") {
-        return null;
-    }
-
     return (
         <Button
             onClick={async () => {
                 await authClient.signOut();
+                router.push("/")
                 router.refresh();
             }}
             className="rounded-sm bg-slate-200 text-red-700 px-6"

@@ -3,9 +3,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MdMenu, MdClose } from "react-icons/md";
+import LogoutBtn from "./LogoutBtn";
+import { usePathname } from "next/navigation";
 
 const MobileMenu = ({ user }) => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const pathname = usePathname();
+
+    const isEditPage = pathname === "/profile/edit";
+
 
     return (
         <div className="md:hidden">
@@ -40,14 +47,22 @@ const MobileMenu = ({ user }) => {
                         </li>
 
                         {user ? (
-                            <li>
-                                <Link
-                                    href="/profile"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    Profile
-                                </Link>
-                            </li>
+                            <>
+                                <li>
+                                    <Link
+                                        href="/profile"
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        Profile
+                                    </Link>
+                                </li>
+
+                                {!isEditPage && (
+                                    <li>
+                                        <LogoutBtn />
+                                    </li>
+                                )}
+                            </>
                         ) : (
                             <>
                                 <li>

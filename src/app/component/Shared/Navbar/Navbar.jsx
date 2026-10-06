@@ -14,14 +14,14 @@ const Navbar = async () => {
             <header className="relative flex h-16 items-center justify-between py-6">
 
                 {/* Left - Logo */}
-                <div>
+                <Link href="/">
                     <Image
                         width={200}
                         height={100}
                         alt="nav-logo"
                         src="/assets/nav-logo (2).png"
                     />
-                </div>
+                </Link>
 
                 {/* Center - Desktop Menu */}
                 <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-4 md:flex">

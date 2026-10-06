@@ -1,17 +1,20 @@
+import BookingForm from '@/app/component/DetailsPage/BookingForm';
 import { getAnimalsDetails } from '@/app/lib/animals/getAnimals';
+import { session } from '@/app/lib/session';
 import Image from 'next/image';
 import React from 'react';
 
 const DetailsPage = async ({ params }) => {
 
     const { id } = await params;
-
     const AnimalDetails = await getAnimalsDetails(id);
-
     const animal = AnimalDetails.data;
 
+    // Get logged-in user
+    const sessionData = await session();
+
     return (
-        <div className="max-w-4xl mx-auto px-4 py-10">
+        <div className="max-w-7xl mx-auto px-4 py-10">
 
             <div className="flex flex-col gap-8">
 
@@ -84,6 +87,9 @@ const DetailsPage = async ({ params }) => {
                 </div>
 
             </div>
+
+            {/* Booking Form */}
+            <BookingForm />
 
         </div>
     );

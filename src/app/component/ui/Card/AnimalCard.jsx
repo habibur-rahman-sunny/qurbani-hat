@@ -16,7 +16,8 @@ const AnimalCard = ({ animal }) => {
                 />
 
                 {/* Category Badge */}
-                <span className="absolute top-3 left-3 bg-green-600 text-white text-sm font-medium px-3 py-1 rounded-full">
+                <span className="absolute top-4 left-4 flex items-center gap-2 bg-slate-300 text-slate-700 text-sm font-semibold px-4 py-2 rounded-xl shadow-md border border-slate-100">
+                    <span className="w-2.5 h-2.5 rounded-full bg-orange-400"></span>
                     {animal.category}
                 </span>
             </div>
@@ -62,7 +63,7 @@ const AnimalCard = ({ animal }) => {
 
                 {/* Location */}
                 <p className="text-sm text-gray-500 mt-4">
-                     {animal.location}
+                    {animal.location}
                 </p>
 
                 {/* Price + Button */}
@@ -73,14 +74,14 @@ const AnimalCard = ({ animal }) => {
                         </p>
 
                         <p className="text-xl font-bold text-green-600">
-                             {animal.price.toLocaleString()}
+                            {animal.price.toLocaleString()}
                         </p>
                     </div>
 
                     <Link href={`/details/${animal.id}`}>
-                    <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition">
-                        View Details
-                    </button>
+                        <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition">
+                            View Details
+                        </button>
                     </Link>
                 </div>
 

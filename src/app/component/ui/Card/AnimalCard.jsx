@@ -9,7 +9,7 @@ const AnimalCard = ({ animal }) => {
             {/* Animal Image */}
             <div className="relative h-60 overflow-hidden">
                 <Image
-                    src="/assets/Brahman-cattle.jfif"
+                    src={animal.image}
                     alt={animal.name}
                     fill
                     className="object-cover hover:scale-105 transition duration-300"

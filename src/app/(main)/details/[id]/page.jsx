@@ -19,9 +19,9 @@ const DetailsPage = async ({ params }) => {
             <div className="flex flex-col gap-8">
 
                 {/* Image */}
-                <div className="relative h-100 w-full rounded-2xl overflow-hidden">
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden">
                     <Image
-                        src="/assets/Brahman-cattle.jfif"
+                        src={animal.image}
                         alt={animal.name}
                         fill
                         className="object-cover"

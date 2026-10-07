@@ -54,8 +54,7 @@ export const uploadImage = async ({ file, setUploading, router }) => {
 // Update the name property of the user
 export const handleNameChange = async ({ name, setName, userData }) => {
 
-    if (!name || name.length < 2) {
-        toast.error("Name must be at least 2 characters");
+    if (!name) {
         return false;
     }
     if (userData?.name === name) {

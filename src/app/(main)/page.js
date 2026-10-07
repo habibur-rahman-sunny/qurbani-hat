@@ -1,5 +1,6 @@
 import HeroSection from "../component/HomePage/HeroSection";
 import QurbaniTips from "../component/HomePage/QurbaniTips";
+import TopBreeds from "../component/HomePage/TopBreeds";
 import AnimalCard from "../component/ui/Card/AnimalCard";
 import { getAnimals } from "../lib/animals/getAnimals";
 
@@ -33,6 +34,9 @@ const HomePage = async () => {
 
       <div className="w-10/12 mx-auto">
         <QurbaniTips></QurbaniTips>
+      </div>
+      <div>
+        <TopBreeds animals={AnimalsArray.data}></TopBreeds>
       </div>
     </div>
   );

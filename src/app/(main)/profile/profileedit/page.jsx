@@ -24,12 +24,17 @@ const ProfileEditPage = () => {
     const [imageUrl, setImageUrl] = useState(userData?.image || "")
 
     // Handle profile page
-    const handleSubmit = async () => {
+
+    // I accidentally did it this way, but there is also a function to change the image through a URL.
+    const handleImageUpdate = async () => {
         if (file) {
             await uploadImage({ file, setUploading, router })
         }
-        if (name) {
-            await handleNameChange({ name, setName, userData })
+    }
+    const handleSubmit = async () => {
+
+        if (name !== userData?.name) {
+            await handleNameChange({ name, setName, userData });
         }
         if (imageUrl && imageUrl !== userData.image) {
             await handleImageUrlChange({ imageUrl, setImageUrl, router })
@@ -51,32 +56,44 @@ const ProfileEditPage = () => {
                             </div>
                             <p className='font-bold text-sm text-slate-600'>Image Loading</p>
                         </div>
-                        : <div className="flex justify-center mb-8">
-                            <div className="relative">
-                                <Image
-                                    src={preview || userData?.image || "/assets/user.png"}
-                                    alt="Profile"
-                                    width={100}
-                                    height={100}
-                                    className="mx-auto rounded-full"
-                                />
-                                {/* Image Edit Button */}
-                                <label className="absolute bottom-1 right-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-slate-300 hover:bg-slate-400 transition-colors">
-                                    <MdEdit />
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        className="hidden"
-                                        onChange={(e) => handleImageChange({ e, setFile, setPreview, router })}
+                        : <div>
+                            <div className="flex justify-center mb-8">
+                                <div className="relative">
+                                    <Image
+                                        src={preview || userData?.image || "/assets/user.png"}
+                                        alt="Profile"
+                                        width={100}
+                                        height={100}
+                                        className="mx-auto rounded-full"
                                     />
-                                </label>
+                                    {/* Image Edit Button */}
+                                    <label className="absolute bottom-1 right-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-slate-300 hover:bg-slate-400 transition-colors">
+                                        <MdEdit />
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className="hidden"
+                                            onChange={(e) => handleImageChange({ e, setFile, setPreview, router })}
+                                        />
+                                    </label>
+                                </div>
                             </div>
+                            <Button
+                                onClick={handleImageUpdate}
+                                isDisabled={
+                                    uploading ||
+                                    (name === userData?.name && imageUrl === userData?.image)
+                                }
+                            >
+                                {uploading ? "Uploading..." : "Update"}
+                            </Button>
                         </div>
+
                 }
 
                 {/* Name */}
-                <div className="rounded-lg p-4 mb-4">
-                    <div className="flex items-center justify-between gap-6">
+                <div className="rounded-lg p-4 mb-2">
+                    <div className="flex items-center justify-between gap-6 mb-6">
 
                         <div className="flex-1">
                             <p className="text-sm text-gray-500 mb-1">
@@ -93,8 +110,8 @@ const ProfileEditPage = () => {
                         </div>
                     </div>
                     <div className="flex-1">
-                        <p className="text-sm text-gray-500 mb-1">
-                            image url
+                        <p className="text-sm text-slate-500 mb-1">
+                            image url <span className='text-red-500'>(You need to provide a valid image URL.)</span>
                         </p>
 
                         <input
@@ -109,9 +126,11 @@ const ProfileEditPage = () => {
 
                 <Button
                     onClick={handleSubmit}
-                    isDisabled={uploading || !file && !name}
+                    isDisabled={
+                        (name === userData?.name && imageUrl === userData?.image)
+                    }
                 >
-                    {uploading ? "Uploading..." : "Submit"}
+                    {"Submit"}
                 </Button>
             </div>
         </div>

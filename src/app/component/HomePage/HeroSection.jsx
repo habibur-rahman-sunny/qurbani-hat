@@ -33,7 +33,7 @@ const HeroSection = () => {
                 <div className="flex justify-center animate__animated animate__slideInUp">
                     <div className="flex h-72 w-full max-w-md items-center justify-center rounded-2xl bg-slate-200">
                         <Image
-                            src="/assets/Brahman-cattle.jfif"
+                            src="https://i.ibb.co.com/RkVwtyxv/4-cows.jpg"
                             alt="/Brahman-cattle"
                             width={600}
                             height={400}

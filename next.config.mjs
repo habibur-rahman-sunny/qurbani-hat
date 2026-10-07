@@ -14,6 +14,12 @@ const nextConfig = {
         hostname: "lh3.googleusercontent.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "i.ibb.co.com",
+        pathname: "/**",
+      },
+      // https://i.ibb.co.com/FLSPjZcb/cpipc-man1.jpg
     ],
   },
   reactCompiler: true,

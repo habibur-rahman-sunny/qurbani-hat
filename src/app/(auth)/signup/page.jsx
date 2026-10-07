@@ -15,6 +15,7 @@ import {
 import { authClient } from "@/app/lib/auth-client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const SignInPage = () => {
     const router = useRouter()
@@ -29,6 +30,7 @@ const SignInPage = () => {
             name: userData.name, // required, The name of the user.
             email: userData.email, // required, The email address of the user.
             password: userData.password, // required, The password of the user. It should be at least 8 characters long and max 128 by default.
+            image: userData.image
         });
         // Registration
         if (data) {
@@ -38,6 +40,13 @@ const SignInPage = () => {
         } else {
             toast.error("Registration failed!");
         }
+    }
+
+    //For social login
+    const signInWithGoogle = async () => {
+        const dataForSocialLogin = await authClient.signIn.social({
+            provider: "google",
+        });
     }
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-50">
@@ -97,9 +106,39 @@ const SignInPage = () => {
                         <FieldError />
                     </TextField>
 
+                    <TextField name="image">
+                        <Label>Photo URL</Label>
+                        <Input placeholder="Enter your photo URL" />
+                        <FieldError />
+                    </TextField>
+
                     <div className="flex gap-2 justify-center">
                         <Button type="reset" variant="secondary">Reset</Button>
                         <Button className="bg-green-800" type="submit"><Check />Submit</Button>
+                    </div>
+
+                    <div className="flex gap-2">
+                        {/* Google Login */}
+                        <Button
+                            type="button"
+                            variant="secondary"
+                            onClick={signInWithGoogle}
+                            className="w-1/2"
+                        >
+                            <FaGoogle />
+                            Google
+                        </Button>
+
+                        {/* GitHub Login */}
+                        <Button
+                            type="button"
+                            variant="secondary"
+                            // onPress={signInWithGithub}
+                            className="w-1/2"
+                        >
+                            <FaGithub />
+                            GitHub
+                        </Button>
                     </div>
 
                     <div className="text-center text-sm">

@@ -2,9 +2,8 @@ import { toast } from "react-toastify";
 import { authClient } from "../auth-client";
 
 // For selecting an image and create preview url
-export const handleImageChange = async ({ e, setFile, setPreview }) => {
+export const handleImageChange = async ({ e, setFile, setPreview, router }) => {
     const selectedFile = e.target.files?.[0];
-    console.log(selectedFile);
     if (!selectedFile) {
         return;
     }
@@ -72,4 +71,28 @@ export const handleNameChange = async ({ name, setName, userData }) => {
         toast.error(error.message)
     }
     setName(data?.user?.name)
+}
+
+// Update img url to set a new image in profile
+export const handleImageUrlChange = async ({ imageUrl, setImageUrl, router }) => {
+    if (!imageUrl.trim()) {
+        toast.error("Please enter an image URL");
+        return;
+    }
+    try {
+        const { error } = await authClient.updateUser({
+            image: imageUrl.trim(),
+        })
+        if (error) {
+            toast.error("Failed to update image");
+            return;
+        }
+
+        setImageUrl(imageUrl.trim());
+        toast.success("Profile image updated successfully");
+        router.refresh()
+    }
+    catch (error) {
+        toast.error("Something went wrong");
+    }
 }

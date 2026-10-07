@@ -1,13 +1,14 @@
 import Image from "next/image";
+import "animate.css";
 import Link from "next/link";
 
 const HeroSection = () => {
     return (
-        <section className="mx-auto w-11/12 max-w-7xl py-16">
+        <section className="mx-auto w-11/12 max-w-7xl md:py-16">
             <div className="grid items-center gap-10 rounded-2xl px-8 py-12 md:grid-cols-2 md:px-12">
 
                 {/* Left Content */}
-                <div>
+                <div className="animate__animated animate__slideInDown">
                     <h1 className="text-4xl font-bold leading-tight text-slate-800 md:text-5xl">
                         Find the Right Animal
                         <span className="block text-green-800">
@@ -29,7 +30,7 @@ const HeroSection = () => {
                 </div>
 
                 {/* Right Image */}
-                <div className="flex justify-center">
+                <div className="flex justify-center animate__animated animate__slideInUp">
                     <div className="flex h-72 w-full max-w-md items-center justify-center rounded-2xl bg-slate-200">
                         <Image
                             src="/assets/Brahman-cattle.jfif"

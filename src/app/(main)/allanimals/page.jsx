@@ -2,6 +2,12 @@ import SortPrice from "@/app/component/AllAnimalsPage/sortPrice";
 import AnimalCard from "@/app/component/ui/Card/AnimalCard";
 import { getAnimals } from "@/app/lib/animals/getAnimals";
 
+export const metadata = {
+  title: "All Animals | QurbaniHat",
+  description:
+    "Browse all available Qurbani animals with details about price, breed, weight, age, and location.",
+};
+
 const AllAnimalPage = async ({ searchParams }) => {
     const AnimalsArray = await getAnimals();
 

@@ -4,6 +4,12 @@ import { session } from '@/app/lib/session';
 import Image from 'next/image';
 import React from 'react';
 
+export const metadata = {
+  title: "Animal Details | QurbaniHat",
+  description:
+    "View detailed information about your selected Qurbani animal and book it easily.",
+};
+
 const DetailsPage = async ({ params }) => {
 
     const { id } = await params;

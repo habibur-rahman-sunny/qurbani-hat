@@ -4,6 +4,12 @@ import TopBreeds from "../component/HomePage/TopBreeds";
 import AnimalCard from "../component/ui/Card/AnimalCard";
 import { getAnimals } from "../lib/animals/getAnimals";
 
+export const metadata = {
+  title: "QurbaniHat | Find Your Perfect Qurbani Animal",
+  description:
+    "QurbaniHat is a convenient platform to browse, explore, and book Qurbani animals.",
+};
+
 const HomePage = async () => {
 
   const AnimalsArray = await getAnimals()

@@ -8,6 +8,8 @@ import { authClient } from '@/app/lib/auth-client';
 import { Button } from '@heroui/react';
 import { handleImageChange, handleImageUrlChange, handleNameChange, uploadImage } from '@/app/lib/profile/profileupdate';
 
+
+
 const ProfileEditPage = () => {
     const { data: userSession } = authClient.useSession();
     const userData = userSession?.user;

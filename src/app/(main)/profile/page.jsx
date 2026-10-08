@@ -4,6 +4,12 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Profile | QurbaniHat",
+  description:
+    "View and manage your QurbaniHat user profile information.",
+};
+
 const ProfilePage = async () => {
     const userSession = await session()
     const userData = userSession?.user

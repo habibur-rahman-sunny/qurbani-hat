@@ -3,15 +3,7 @@
 import Link from "next/link";
 import { Check } from "@gravity-ui/icons";
 
-import {
-    Button,
-    Description,
-    FieldError,
-    Form,
-    Input,
-    Label,
-    TextField,
-} from "@heroui/react";
+import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 import { authClient } from "@/app/lib/auth-client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";

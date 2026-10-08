@@ -1,4 +1,4 @@
-# 🐄 QurbaniHat
+#  QurbaniHat
 
 QurbaniHat is a modern web application for browsing and exploring animals suitable for Qurbani. Users can view available animals, check their details, and book an animal through a simple and user-friendly interface.
 
@@ -26,7 +26,7 @@ The main purpose of QurbaniHat is to provide an easy and convenient platform whe
   - Qurbani Tips
   - Top Breeds
 
-- 🐄 **All Animals**
+-  **All Animals**
   - Displays all available animals
   - Animal cards with important information
   - Sort animals by price
@@ -50,7 +50,7 @@ The main purpose of QurbaniHat is to provide an easy and convenient platform whe
   - Protected pages/features
   - Session-based authentication using Better Auth
 
-- 👤 **Profile Management**
+-  **Profile Management**
   - View logged-in user's profile
   - Update profile name
   - Update profile image
@@ -61,7 +61,7 @@ The main purpose of QurbaniHat is to provide an easy and convenient platform whe
   - Tablet-friendly
   - Desktop-friendly
 
-- 🔔 **Toast Notifications**
+-  **Toast Notifications**
   - Success and error messages for important actions
 
 ## 🛠️ Technologies Used
@@ -127,7 +127,7 @@ QurbaniHat uses **Better Auth** for authentication and **MongoDB** for storing u
 
 Users can create an account, log in, access protected features, and update their profile information.
 
-## ☁️ Image Upload
+##  Image Upload
 
 Cloudinary is used for uploading and storing profile images.
 
